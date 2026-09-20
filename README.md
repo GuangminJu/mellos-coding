@@ -18,7 +18,7 @@ claude plugin marketplace add GuangminJu/mellos-coding
 claude plugin install mellos-coding@mellos-coding
 ```
 
-新会话使用 `/mellos-coding:mellos-coding`，收录案例用 `/mellos-coding:add-code-example`。
+新会话使用 `/mellos-coding:mellos-coding`，收录案例用 `/mellos-coding:add-code-example`。会话启动时插件会注入 `plugins/mellos-coding/hooks/session-start.md` 一段话，要求编码前先加载规范技能；规范正文仍按需读取。
 
 Codex：
 

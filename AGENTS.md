@@ -2,7 +2,8 @@
 
 这是可扩充的通用 AI 编码规范库，每页负责一类场景。
 
-- **提示词必须极简**：仅保留适用条件、必要约束和案例链接；不写教程、重复解释或通用常识。
+- **提示词必须极简**：仅保留适用条件、必要约束和案例链接；不写教程、重复解释或通用常识。`hooks/session-start.md` 是会话启动注入的那段话，同样极简，只说"先加载哪个技能"。
+- 启动触发按宿主各用一套：Claude Code 靠 `hooks/`，Codex 靠 `agents/openai.yaml` 的 `allow_implicit_invocation`；不要互相复制。
 - 先读项目；业务含义不清时确认。重视分层、组合、复用和业务解耦。
 - 编码遵循 `plugins/mellos-coding/skills/mellos-coding/references/error-design.md`：可静态确定的错误前置，不擅加兜底，函数主流程清晰。
 - 类内多状态遵循 `plugins/mellos-coding/skills/mellos-coding/references/multi-state.md`。
