@@ -11,7 +11,16 @@
 
 ## 安装
 
-安装 Codex CLI 后执行：
+Claude Code：
+
+```sh
+claude plugin marketplace add GuangminJu/mellos-coding
+claude plugin install mellos-coding@mellos-coding
+```
+
+新会话使用 `/mellos-coding:mellos-coding`，收录案例用 `/mellos-coding:add-code-example`。
+
+Codex：
 
 ```sh
 codex plugin marketplace add GuangminJu/mellos-coding --ref main
@@ -22,23 +31,40 @@ codex plugin add mellos-coding@mellos-coding
 
 ## 更新
 
+Claude Code：
+
+```sh
+claude plugin marketplace update mellos-coding
+claude plugin update mellos-coding
+```
+
+Codex：
+
 ```sh
 codex plugin marketplace upgrade mellos-coding
 codex plugin add mellos-coding@mellos-coding
 ```
 
-更新后新建任务使用。
+更新后新建会话使用。
 
 ## 维护
 
 提供代码并说“加入 Mellos Coding”，在可写的开发源码中收录案例、更新规范。对外发布时将验证后的变更提交并推送到 `main`；使用者按上面的命令获取更新。
 
-维护者已有个人市场指向本地源码时，用以下命令更新本机安装：
+维护者把本地市场指向开发源码后，用对应宿主的脚本更新本机安装：
 
 ```powershell
-.\scripts\update-plugin.ps1
+.\scripts\update-claude-plugin.ps1   # Claude Code，只需 Claude Code CLI
+.\scripts\update-plugin.ps1          # Codex，需要 Codex CLI、Python 及插件/技能辅助工具
 ```
 
-此脚本仅用于本地开发，不负责发布 GitHub；需要 Codex CLI、Python 及插件/技能辅助工具。
+两个脚本都只用于本地开发，不负责发布 GitHub。版本号是插件内容的唯一标识，三个清单（`.claude-plugin/plugin.json`、`.claude-plugin/marketplace.json`、`.codex-plugin/plugin.json`）必须一致，由脚本推进；Claude Code 只在版本变化时才重新拷贝插件。
+
+Claude Code 首次指向开发源码：
+
+```powershell
+claude plugin marketplace add <本仓库路径>
+claude plugin install mellos-coding@mellos-coding
+```
 
 `progress_work.cpp` 只演示业务流程；开发期验证独立放在 `tests/progress_work_compile.cpp`，通过 C++17 编译时的 `static_assert` 执行。

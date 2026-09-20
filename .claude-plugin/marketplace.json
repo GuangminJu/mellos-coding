@@ -1,0 +1,17 @@
+{
+  "name": "mellos-coding",
+  "owner": {
+    "name": "Mellos"
+  },
+  "description": "Marketplace for the Mellos Coding plugin",
+  "plugins": [
+    {
+      "name": "mellos-coding",
+      "source": "./plugins/mellos-coding",
+      "description": "以独立规范页面指导设计、实现与审查代码，按任务场景加载适用规则，代码案例按需读取",
+      "version": "0.2.0",
+      "author": { "name": "Mellos" },
+      "tags": ["coding-standards", "code-review", "architecture", "layering", "cpp"]
+    }
+  ]
+}

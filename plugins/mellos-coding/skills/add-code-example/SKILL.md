@@ -9,4 +9,4 @@ description: "仅在用户明确要求收录代码案例或提炼规范时使用
 2. 保留原始案例，修正版另存；区分用户要求和示例细节，语义或范围不清时确认。
 3. 在主技能 `skills/mellos-coding/` 下保存案例到 `assets/examples/<topic>/<case>/`，补充 `references/<topic>.md`；新主题增加入口索引。
 4. **规范必须极简**：只写适用条件、必要约束和案例链接；不写教程、重复解释或通用常识。只归档案例时不扩张规则。
-5. 验证改动；读取并运行源码项目的 `scripts/update-plugin.ps1` 同步安装。无此脚本时按已建立的插件更新流程处理，不能同步则明确说明。
+5. 验证改动；按宿主运行源码项目的同步脚本：Claude Code 用 `scripts/update-claude-plugin.ps1`，Codex 用 `scripts/update-plugin.ps1`。同步后需新建会话才生效；不能同步则明确说明。
