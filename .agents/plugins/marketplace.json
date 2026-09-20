@@ -1,0 +1,20 @@
+{
+  "name": "mellos-coding",
+  "interface": {
+    "displayName": "Mellos Coding"
+  },
+  "plugins": [
+    {
+      "name": "mellos-coding",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mellos-coding"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

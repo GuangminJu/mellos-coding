@@ -1,0 +1,6 @@
+interface:
+  display_name: "Mellos Coding"
+  short_description: "按当前任务选择独立编码规范，指导 AI 设计、实现与审查代码"
+  default_prompt: "使用 $mellos-coding 处理当前编码需求，先阅读项目并选择适用的规范页面，再实施和验证。"
+policy:
+  allow_implicit_invocation: true
