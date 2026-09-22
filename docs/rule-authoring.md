@@ -1,7 +1,9 @@
 # 规范维护
 
+插件只读取规范；规范和案例只在本仓库开发源码中添加，经发布生效。
+
 - **必须极简**：每页只写适用条件、必要约束和案例链接，不写教程、重复解释或通用常识。
 - 同主题补已有页，新主题放主技能的 `references/<topic>.md` 并添加入口链接；正文只维护一份。
-- [收录案例](../plugins/mellos-coding/skills/add-code-example/SKILL.md)时保留原文，区分推荐写法、反例和修正版；未确认的解释不设为强制规则。
+- 案例原文存于主技能的 `assets/examples/<topic>/<case>/`，修正版另存；区分推荐写法、反例和修正版，示例细节与未确认的解释不设为强制规则。只归档案例时不扩张规则。
 - 代码独立存放，按需读取；只验证受影响的内容。
-- 验证后运行 `scripts/update-plugin.ps1` 更新 Codex，确认安装状态；不编辑缓存。
+- 发布：在新分支修改并验证，按宿主运行 `scripts/update-claude-plugin.ps1`（Claude Code）或 `scripts/update-plugin.ps1`（Codex）推进版本并更新本机安装，不编辑缓存；再合入 `main` 推送。

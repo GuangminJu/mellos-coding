@@ -7,7 +7,6 @@
 - [错误与函数可读性](plugins/mellos-coding/skills/mellos-coding/references/error-design.md)
 - [多状态设计](plugins/mellos-coding/skills/mellos-coding/references/multi-state.md)
 - [事务式更新](plugins/mellos-coding/skills/mellos-coding/references/transactional-update.md)
-- [收录案例](plugins/mellos-coding/skills/add-code-example/SKILL.md)
 - [维护约定](docs/rule-authoring.md)
 
 ## 安装
@@ -19,7 +18,7 @@ claude plugin marketplace add GuangminJu/mellos-coding
 claude plugin install mellos-coding@mellos-coding
 ```
 
-新会话使用 `/mellos-coding:mellos-coding`，收录案例用 `/mellos-coding:add-code-example`。会话启动时插件会注入 `plugins/mellos-coding/hooks/session-start.md` 一段话，要求编码前先加载规范技能；规范正文仍按需读取。
+新会话使用 `/mellos-coding:mellos-coding`。会话启动时插件会注入 `plugins/mellos-coding/hooks/session-start.md` 一段话，要求编码前先加载规范技能；规范正文仍按需读取。
 
 Codex：
 
@@ -50,7 +49,7 @@ codex plugin add mellos-coding@mellos-coding
 
 ## 维护
 
-提供代码并说“加入 Mellos Coding”，在可写的开发源码中收录案例、更新规范。对外发布时将验证后的变更提交并推送到 `main`；使用者按上面的命令获取更新。
+插件只读取规范。规范和案例只在本仓库开发源码中按[维护约定](docs/rule-authoring.md)添加，验证后提交并推送到 `main` 发布；使用者按上面的命令获取更新。
 
 维护者把本地市场指向开发源码后，用对应宿主的脚本更新本机安装：
 

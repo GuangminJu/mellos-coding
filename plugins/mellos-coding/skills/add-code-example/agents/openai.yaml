@@ -1,4 +1,0 @@
-interface:
-  display_name: "收录代码案例"
-  short_description: "把用户指定的代码案例整理为专项规范，并同步本地插件安装"
-  default_prompt: "使用 $add-code-example 把这段代码收录到 Mellos Coding，提炼已确认的设计要求并同步安装。"
