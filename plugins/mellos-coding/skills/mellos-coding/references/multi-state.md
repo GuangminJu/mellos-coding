@@ -9,4 +9,4 @@
 - 已有运行事实足够时，新增 End 不修改 Running。不得用单体枚举或标志分支代替职责分离。
 - 强制职责分离；命名、指针和调度可适配，保留业务语义。并发读取须一致，结果及资源生命周期须有效。
 
-按需查看：[参考实现](../assets/examples/progress_work.hpp) · [调用示例](../assets/examples/progress_work.cpp)。示例阈值不构成通用业务规则。
+按需查看：[参考实现](../assets/examples/multi-state/progress-work/progress_work.hpp) · [调用示例](../assets/examples/multi-state/progress-work/progress_work.cpp)。示例阈值不构成通用业务规则。

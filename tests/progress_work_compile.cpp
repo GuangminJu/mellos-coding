@@ -1,4 +1,4 @@
-#include "../plugins/mellos-coding/skills/mellos-coding/assets/examples/progress_work.hpp"
+#include "../plugins/mellos-coding/skills/mellos-coding/assets/examples/multi-state/progress-work/progress_work.hpp"
 
 using namespace mellos::example;
 

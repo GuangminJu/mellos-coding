@@ -1,6 +1,6 @@
 {
   "name": "mellos-coding",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "可扩充的 AI 编码规范库：按当前任务加载独立规范页面，代码案例按需读取",
   "author": {
     "name": "Mellos"
