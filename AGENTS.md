@@ -7,6 +7,7 @@
 - 先读项目；业务含义不清时确认。重视分层、组合、复用和业务解耦。
 - 编码遵循 `plugins/mellos-coding/skills/mellos-coding/references/error-design.md`：可静态确定的错误前置，不擅加兜底，函数主流程清晰。
 - 类内多状态遵循 `plugins/mellos-coding/skills/mellos-coding/references/multi-state.md`。
+- 替换或更新已持有的状态、资源遵循 `plugins/mellos-coding/skills/mellos-coding/references/transactional-update.md`。
 - 用户明确要求收录案例时使用 `plugins/mellos-coding/skills/add-code-example/SKILL.md`，保留原文，勿将示例细节变为通用规则。
 - 只改开发源码；验证后按宿主运行 `scripts/update-claude-plugin.ps1`（Claude Code）或 `scripts/update-plugin.ps1`（Codex）同步已授权的安装，不改缓存。
 - 版本号是插件内容的唯一标识，`.claude-plugin/plugin.json`、`.claude-plugin/marketplace.json` 与 `.codex-plugin/plugin.json` 必须一致；同步脚本负责推进它，不要手改。

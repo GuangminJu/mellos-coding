@@ -6,6 +6,7 @@
 - [分层与组合](plugins/mellos-coding/skills/mellos-coding/references/layering.md)
 - [错误与函数可读性](plugins/mellos-coding/skills/mellos-coding/references/error-design.md)
 - [多状态设计](plugins/mellos-coding/skills/mellos-coding/references/multi-state.md)
+- [事务式更新](plugins/mellos-coding/skills/mellos-coding/references/transactional-update.md)
 - [收录案例](plugins/mellos-coding/skills/add-code-example/SKILL.md)
 - [维护约定](docs/rule-authoring.md)
 

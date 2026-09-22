@@ -1,6 +1,6 @@
 {
   "name": "mellos-coding",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "An extensible AI coding standards library that selects independent rule pages for the current task.",
   "author": {
     "name": "Mellos"

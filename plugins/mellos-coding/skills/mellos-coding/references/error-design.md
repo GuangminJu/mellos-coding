@@ -6,3 +6,5 @@
 - 不擅自新增默认值、截断、吞错、重试等需求外兜底。
 - 函数直接呈现主流程；不重复检查已保证的条件，不为检查堆叠模板或抽象。
 - 保留业务判定；真正动态的外部失败仅按需求在边界处理。验证代码与演示分开。
+
+按需查看：[编译期非空参数](../assets/examples/transactional-update/type-safe-reload/Type-Safe_Transactional_Update.cpp) 中的 `NonEmptyString`。
