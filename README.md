@@ -7,6 +7,7 @@
 - [错误与函数可读性](plugins/mellos-coding/skills/mellos-coding/references/error-design.md)
 - [多状态设计](plugins/mellos-coding/skills/mellos-coding/references/multi-state.md)
 - [事务式更新](plugins/mellos-coding/skills/mellos-coding/references/transactional-update.md)
+- [持有即可用](plugins/mellos-coding/skills/mellos-coding/references/valid-by-construction.md)
 - [维护约定](docs/rule-authoring.md)
 
 ## 安装
