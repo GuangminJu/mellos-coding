@@ -6,7 +6,7 @@ namespace mellos::example
 {
 struct Begin
 {
-    int Total = 100;
+    int Total;
 };
 
 class Running

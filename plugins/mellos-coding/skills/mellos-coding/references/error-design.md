@@ -7,4 +7,4 @@
 - 函数直接呈现主流程；不重复检查已保证的条件，不为检查堆叠模板或抽象。
 - 保留业务判定；真正动态的外部失败仅按需求在边界处理。验证代码与演示分开。
 
-按需查看：[编译期非空参数](../assets/examples/transactional-update/type-safe-reload/Type-Safe_Transactional_Update.cpp) 中的 `NonEmptyString`。
+按需查看：[编译期非空参数](../assets/examples/transactional-update/type-safe-reload/Type-Safe_Transactional_Update.cpp) 中的 `NonEmptyString`：只在编译期拒绝空字面量，运行时字符串的合法性属于上层业务。
