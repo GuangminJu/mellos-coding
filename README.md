@@ -1,6 +1,6 @@
 # Mellos Coding
 
-Personal reference code cases for Claude Code. At session start a hook lists every case with its title and when it applies; before writing code, the AI must read the README of every case that applies, then studies the code as deeply as it judges useful.
+Personal reference code cases for Claude Code. At session start a hook lists every case with its title and when it applies; before writing code, the AI must read the README and all code files of every case. A blind comparison of five reading requirements found this one gave the best and most consistent code; once the cases grow too many to read in full, revisit it.
 
 ## Cases
 
