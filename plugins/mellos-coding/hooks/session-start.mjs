@@ -24,7 +24,7 @@ const cases = listDirectories(examplesRoot).flatMap((topic) =>
 
 const additionalContext = [
   "The user keeps reference code cases showing how they want code designed (Mellos Coding).",
-  "Before writing or changing code, consult them. How deep to go is your call: this list may be enough, or read a case's README, or study its code before editing.",
+  "Before writing or changing any code, you must read the README (<case>/README.md under the examples root) of every case below whose \"Applies when\" fits the task, and read it when unsure. How much of a case's code to study beyond that is your call.",
   "The cases are C++; in other languages carry over the principles, not the C++ idioms.",
   "",
   `Examples root: ${examplesRoot}`,
