@@ -1,7 +1,6 @@
 {
   "name": "mellos-coding",
-  "version": "0.2.6",
-  "description": "可扩充的 AI 编码规范库：按当前任务加载独立规范页面，代码案例按需读取",
+  "description": "Reference code cases listed at session start, so the AI consults them before writing code",
   "author": {
     "name": "Mellos"
   },
@@ -9,9 +8,8 @@
   "repository": "https://github.com/GuangminJu/mellos-coding",
   "keywords": [
     "coding-standards",
-    "code-review",
+    "examples",
     "architecture",
-    "layering",
     "cpp"
   ]
 }

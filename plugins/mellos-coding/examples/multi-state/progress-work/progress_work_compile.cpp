@@ -1,4 +1,4 @@
-#include "../plugins/mellos-coding/skills/mellos-coding/assets/examples/multi-state/progress-work/progress_work.hpp"
+#include "progress_work.hpp"
 
 #include <type_traits>
 

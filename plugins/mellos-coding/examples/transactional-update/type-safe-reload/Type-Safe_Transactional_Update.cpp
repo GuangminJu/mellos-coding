@@ -85,8 +85,8 @@ private:
 
     bool CanLoad(NonEmptyString Name) const
     {
-        // 这里可以进行运行时检查
-        // 比如文件是否存在、资源是否合法等
+        // Runtime checks go here,
+        // e.g. whether the file exists or the resource is valid.
         return Name.Get() != "Invalid";
     }
 
@@ -106,12 +106,12 @@ int main(int argc, char* argv[])
     Obj.Print();
 
     // -----------------------------
-    // 编译失败
+    // Compile error
     // -----------------------------
     // Obj.Reload("");
     // -----------------------------
-    // Verify 失败
-    // 原来的 Resource_B 不受影响
+    // Verify fails;
+    // the original Resource_B is unaffected
     // -----------------------------
 
     Obj.Reload("Invalid");

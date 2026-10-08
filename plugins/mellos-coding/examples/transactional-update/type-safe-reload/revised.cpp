@@ -26,7 +26,7 @@ private:
 class Resource
 {
 public:
-    // Verify + Prepare：失败返回空，成功时在局部完整构造，不触碰任何持有者
+    // Verify + Prepare: empty on failure; on success fully built locally, touching no holder.
     [[nodiscard]] static std::optional<Resource> Load(NonEmptyString Name)
     {
         if (Name.Get() == "Invalid")
@@ -47,7 +47,7 @@ class Object
 public:
     explicit Object(Resource Initial) noexcept : Current(std::move(Initial)) {}
 
-    // Commit：参数类型证明 Verify 与 Prepare 已完成
+    // Commit: the parameter type proves Verify and Prepare are done.
     void Reload(Resource Next) noexcept { std::swap(Current, Next); }
 
     void Print() const { std::cout << "Current Resource: " << Current.GetName() << '\n'; }
@@ -69,7 +69,7 @@ int main()
         Obj.Reload(std::move(*Next));
     Obj.Print();
 
-    // 编译失败：Resource::Load("");
+    // Compile error: Resource::Load("");
     if (std::optional<Resource> Next = Resource::Load("Invalid"))
         Obj.Reload(std::move(*Next));
     Obj.Print();
