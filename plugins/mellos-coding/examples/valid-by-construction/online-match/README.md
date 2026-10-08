@@ -6,20 +6,21 @@ A client connects once, then plays a list of levels. Every object is usable from
 
 | Role | Files |
 |---|---|
-| Connection, Level, Player, Match, MatchEnd | [online_match.hpp](online_match.hpp) |
+| Connection, Position, Level, Player, Match, MatchEnd | [online_match.hpp](online_match.hpp) |
 | Orchestration | [online_match.cpp](online_match.cpp) |
 
 ## Benefits
 
 | Benefit | Where |
 |---|---|
-| **Valid by construction**: every dependency is a constructor parameter, so holding an object means it is ready to use. | [Player](online_match.hpp#L46), [Match](online_match.hpp#L64) |
+| **Valid by construction**: every dependency is a constructor parameter, so holding an object means it is ready to use. | [Player](online_match.hpp#L59), [Match](online_match.hpp#L77) |
 | **Fail once at the boundary**: the only fallible acquisition returns `std::optional` and is checked once; holders never recheck. | [Open](online_match.hpp#L13-L18), [check](online_match.cpp#L10-L12) |
-| **Scoped borrowing**: the lender's scope encloses the borrower, so dependencies are held by reference, never by nullable pointer. | [Player::Link](online_match.hpp#L57), [lifetimes](online_match.cpp#L10-L21) |
-| **Deterministic initialization order**: member declaration order is construction order, and destruction runs in reverse automatically. | [Match](online_match.hpp#L64), [#L72-L73](online_match.hpp#L72-L73) |
+| **Scoped borrowing**: the lender's scope encloses the borrower, so dependencies are held by reference, never by nullable pointer. | [Player::Link](online_match.hpp#L70), [lifetimes](online_match.cpp#L10-L21) |
+| **Deterministic initialization order**: member declaration order is construction order, and destruction runs in reverse automatically. | [Match](online_match.hpp#L77), [#L85-L86](online_match.hpp#L85-L86) |
 | **Phase change by construction**: the next match is a new object, not a reset flag or reused instance. | [online_match.cpp#L15-L21](online_match.cpp#L15-L21) |
-| **End of life by judgement**: `MatchEnd` decides when a match has served its purpose, and the owner ends the scope (see `multi-state/progress-work`). | [MatchEnd](online_match.hpp#L76-L88), [loop](online_match.cpp#L18-L19) |
-| **Composition over inheritance**: `Match` is composed of a `Level` and a `Player`; nothing is reused through inheritance. | [Match](online_match.hpp#L71-L73) |
+| **End of life by judgement**: `MatchEnd` decides when a match has served its purpose, and the owner ends the scope (see `multi-state/progress-work`). | [MatchEnd](online_match.hpp#L89-L101), [loop](online_match.cpp#L18-L19) |
+| **No Primitive Obsession**: tiles are `Position`, exposing only `Next`, `Reached` and `ToString`. | [Position](online_match.hpp#L28-L39), [Level](online_match.hpp#L44) |
+| **Composition over inheritance**: `Match` is composed of a `Level` and a `Player`; nothing is reused through inheritance. | [Match](online_match.hpp#L85-L86) |
 
 ## Illustrative only
 

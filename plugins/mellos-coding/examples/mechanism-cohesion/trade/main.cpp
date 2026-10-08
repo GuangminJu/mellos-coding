@@ -13,7 +13,7 @@ static void Print(const char* Step, const Player& Customer, const Shop& Store)
 int main()
 {
     Player Customer{Gold(100), {Item::Gem}};
-    Shop Store{Gold(20), {{Item::Sword, {Gold(80), 1}}, {Item::Potion, {Gold(10), 5}}}};
+    Shop Store{Gold(20), {{Item::Sword, {Gold(80), Quantity(1)}}, {Item::Potion, {Gold(10), Quantity(5)}}}};
 
     std::cout << "Buy sword: " << (Trade::Buy(Customer, Store, Item::Sword) == Trade::BuyResult::Bought) << '\n';
     Print("After buy", Customer, Store);

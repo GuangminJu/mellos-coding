@@ -25,37 +25,50 @@ private:
     std::string Host;
 };
 
+class Position
+{
+public:
+    explicit Position(int InTile) : Tile(InTile) {}
+
+    [[nodiscard]] Position Next() const { return Position(Tile + 1); }
+    [[nodiscard]] bool Reached(Position Goal) const { return Tile >= Goal.Tile; }
+    [[nodiscard]] std::string ToString() const { return std::to_string(Tile); }
+
+private:
+    int Tile;
+};
+
 class Level
 {
 public:
-    Level(std::string InName, int InSpawn, int InGoal) : Name(std::move(InName)), Spawn(InSpawn), Goal(InGoal) {}
+    Level(std::string InName, Position InSpawn, Position InGoal) : Name(std::move(InName)), Spawn(InSpawn), Goal(InGoal) {}
 
     [[nodiscard]] const std::string& GetName() const { return Name; }
-    [[nodiscard]] int GetSpawn() const { return Spawn; }
-    [[nodiscard]] int GetGoal() const { return Goal; }
+    [[nodiscard]] Position GetSpawn() const { return Spawn; }
+    [[nodiscard]] Position GetGoal() const { return Goal; }
 
 private:
     std::string Name;
-    int Spawn;
-    int Goal;
+    Position Spawn;
+    Position Goal;
 };
 
 class Player
 {
 public:
-    Player(const Connection& InLink, const Level& Map) : Link(InLink), Position(Map.GetSpawn()) {}
+    Player(const Connection& InLink, const Level& Map) : Link(InLink), Location(Map.GetSpawn()) {}
 
     void Step()
     {
-        ++Position;
-        Link.Send("move " + std::to_string(Position));
+        Location = Location.Next();
+        Link.Send("move " + Location.ToString());
     }
 
-    [[nodiscard]] int GetPosition() const { return Position; }
+    [[nodiscard]] Position GetLocation() const { return Location; }
 
 private:
     const Connection& Link;
-    int Position;
+    Position Location;
 };
 
 class Match
@@ -78,7 +91,7 @@ class MatchEnd
 public:
     [[nodiscard]] static std::optional<MatchEnd> GetResult(const Match& Game)
     {
-        if (Game.GetPlayer().GetPosition() >= Game.GetLevel().GetGoal())
+        if (Game.GetPlayer().GetLocation().Reached(Game.GetLevel().GetGoal()))
             return MatchEnd();
         return std::nullopt;
     }

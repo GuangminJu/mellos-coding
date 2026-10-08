@@ -6,7 +6,7 @@ using namespace mellos::example;
 
 int main()
 {
-    const Begin Request{100};
+    const Begin Request{Steps(100)};
     Running Work(Request);
     bool HalfReported = false;
 

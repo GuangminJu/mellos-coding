@@ -11,7 +11,7 @@ int main()
     if (!Link)
         return 1;
 
-    const std::vector<Level> Playlist{Level{"Arena", 0, 2}, Level{"Canyon", 3, 5}};
+    const std::vector<Level> Playlist{Level{"Arena", Position(0), Position(2)}, Level{"Canyon", Position(3), Position(5)}};
     for (const Level& Map : Playlist)
     {
         Match Game{*Link, Map};

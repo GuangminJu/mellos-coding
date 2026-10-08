@@ -6,7 +6,7 @@ using namespace mellos::example;
 
 constexpr bool ResultsAreIndependent()
 {
-    Running Work(Begin{4});
+    Running Work(Begin{Steps(4)});
     if (HalfEnd::GetResult(Work) || CompletedEnd::GetResult(Work))
         return false;
 
@@ -16,18 +16,18 @@ constexpr bool ResultsAreIndependent()
         return false;
 
     const bool RepeatedHalf = HalfEnd::GetResult(Work).has_value();
-    if (!RepeatedHalf || Work.GetCurrent() != 2)
+    if (!RepeatedHalf || !(Work.GetCurrent() == Steps(2)))
         return false;
 
     Work.Advance();
     Work.Advance();
     return HalfEnd::GetResult(Work) && CompletedEnd::GetResult(Work)
-        && CompletedEnd::GetResult(Work) && Work.GetCurrent() == 4;
+        && CompletedEnd::GetResult(Work) && Work.GetCurrent() == Steps(4);
 }
 
 constexpr bool OriginalHalfwayRuleIsPreserved()
 {
-    Running Work(Begin{3});
+    Running Work(Begin{Steps(3)});
     Work.Advance();
     return HalfEnd::GetResult(Work) && !CompletedEnd::GetResult(Work);
 }
