@@ -7,22 +7,15 @@
 
 namespace mellos::example
 {
-class Connection
+class HostName
 {
 public:
-    [[nodiscard]] static std::optional<Connection> Open(std::string Host)
-    {
-        if (Host == "unreachable")
-            return std::nullopt;
-        return Connection(std::move(Host));
-    }
+    explicit HostName(std::string InValue) : Value(std::move(InValue)) {}
 
-    void Send(const std::string& Message) const { std::cout << Host << " <- " << Message << '\n'; }
+    [[nodiscard]] const std::string& Get() const { return Value; }
 
 private:
-    explicit Connection(std::string InHost) : Host(std::move(InHost)) {}
-
-    std::string Host;
+    std::string Value;
 };
 
 class Position
@@ -38,17 +31,47 @@ private:
     int Tile;
 };
 
+class Connection
+{
+public:
+    [[nodiscard]] static std::optional<Connection> Open(HostName Host)
+    {
+        if (Host.Get() == "unreachable")
+            return std::nullopt;
+        return Connection(std::move(Host));
+    }
+
+    // Wire encoding belongs to the connection; callers pass domain values.
+    void SendMove(Position To) const { std::cout << Host.Get() << " <- move " << To.ToString() << '\n'; }
+
+private:
+    explicit Connection(HostName InHost) : Host(std::move(InHost)) {}
+
+    HostName Host;
+};
+
+class LevelName
+{
+public:
+    explicit LevelName(std::string InValue) : Value(std::move(InValue)) {}
+
+    [[nodiscard]] const std::string& Get() const { return Value; }
+
+private:
+    std::string Value;
+};
+
 class Level
 {
 public:
-    Level(std::string InName, Position InSpawn, Position InGoal) : Name(std::move(InName)), Spawn(InSpawn), Goal(InGoal) {}
+    Level(LevelName InName, Position InSpawn, Position InGoal) : Name(std::move(InName)), Spawn(InSpawn), Goal(InGoal) {}
 
-    [[nodiscard]] const std::string& GetName() const { return Name; }
+    [[nodiscard]] const LevelName& GetName() const { return Name; }
     [[nodiscard]] Position GetSpawn() const { return Spawn; }
     [[nodiscard]] Position GetGoal() const { return Goal; }
 
 private:
-    std::string Name;
+    LevelName Name;
     Position Spawn;
     Position Goal;
 };
@@ -61,7 +84,7 @@ public:
     void Step()
     {
         Location = Location.Next();
-        Link.Send("move " + Location.ToString());
+        Link.SendMove(Location);
     }
 
     [[nodiscard]] Position GetLocation() const { return Location; }

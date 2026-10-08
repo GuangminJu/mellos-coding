@@ -1,6 +1,5 @@
 #include <iostream>
 #include <optional>
-#include <string>
 #include <string_view>
 #include <utility>
 
@@ -31,15 +30,15 @@ public:
     {
         if (Name.Get() == "Invalid")
             return std::nullopt;
-        return Resource(std::string(Name.Get()));
+        return Resource(Name);
     }
 
-    std::string_view GetName() const noexcept { return Name; }
+    NonEmptyString GetName() const noexcept { return Name; }
 
 private:
-    explicit Resource(std::string InName) : Name(std::move(InName)) {}
+    explicit Resource(NonEmptyString InName) : Name(InName) {}
 
-    std::string Name;
+    NonEmptyString Name;
 };
 
 class Object
@@ -50,7 +49,7 @@ public:
     // Commit: the parameter type proves Verify and Prepare are done.
     void Reload(Resource Next) noexcept { std::swap(Current, Next); }
 
-    void Print() const { std::cout << "Current Resource: " << Current.GetName() << '\n'; }
+    void Print() const { std::cout << "Current Resource: " << Current.GetName().Get() << '\n'; }
 
 private:
     Resource Current;
