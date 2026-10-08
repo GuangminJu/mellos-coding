@@ -17,13 +17,14 @@ Trade::BuyResult Trade::Buy(Player& Customer, Shop& Store, Item Wanted)
         return BuyResult::OutOfStock;
 
     Listing& Offer = Found->second;
-    const unsigned Price = Offer.Price;
-    if (Customer.Gold < Price)
+    const Gold Price = Offer.Price;
+    const std::optional<Gold> CustomerLeft = Customer.Purse.Spend(Price);
+    if (!CustomerLeft)
         return BuyResult::CustomerCannotAfford;
 
     // Both sides are verified, so the commit cannot fail and no half-done trade exists.
-    Customer.Gold -= Price;
-    Store.Gold += Price;
+    Customer.Purse = *CustomerLeft;
+    Store.Till = Store.Till + Price;
     --Offer.Stock;
     Customer.Bag.insert(Wanted);
     return BuyResult::Bought;
@@ -40,13 +41,14 @@ Trade::SellResult Trade::Sell(Player& Customer, Shop& Store, Item Offered)
         return SellResult::NotTraded;
 
     Listing& Offer = Found->second;
-    const unsigned Price = Offer.Price / BuybackDivisor;
-    if (Store.Gold < Price)
+    const Gold Price = Offer.Price / BuybackDivisor;
+    const std::optional<Gold> StoreLeft = Store.Till.Spend(Price);
+    if (!StoreLeft)
         return SellResult::StoreCannotAfford;
 
     // Line-by-line inverse of Buy's commit.
-    Store.Gold -= Price;
-    Customer.Gold += Price;
+    Store.Till = *StoreLeft;
+    Customer.Purse = Customer.Purse + Price;
     ++Offer.Stock;
     Customer.Bag.erase(Owned);
     return SellResult::Sold;

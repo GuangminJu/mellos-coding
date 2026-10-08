@@ -9,7 +9,7 @@ namespace mellos::example
 // Trade mechanism: a trade mutates both Player and Shop and belongs to neither,
 // so validation, pricing and transfer for both directions live only in this .h/.cpp.
 // The mechanism name is the scope; functions and result types do not leak outward.
-// Layering: Trade depends on Player/Shop/Item, none of which include Trade.h,
+// Layering: Trade depends on Player/Shop/Item/Gold, none of which include Trade.h,
 // so dependencies point one way and the data types stay reusable without trading.
 class Trade
 {

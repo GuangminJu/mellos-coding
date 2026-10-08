@@ -6,14 +6,14 @@ using namespace mellos::example;
 
 static void Print(const char* Step, const Player& Customer, const Shop& Store)
 {
-    std::cout << Step << ": player " << Customer.Gold << "g/" << Customer.Bag.size()
-              << " items, shop " << Store.Gold << "g\n";
+    std::cout << Step << ": player " << Customer.Purse.GetAmount() << "g/" << Customer.Bag.size()
+              << " items, shop " << Store.Till.GetAmount() << "g\n";
 }
 
 int main()
 {
-    Player Customer{100, {Item::Gem}};
-    Shop Store{20, {{Item::Sword, {80, 1}}, {Item::Potion, {10, 5}}}};
+    Player Customer{Gold(100), {Item::Gem}};
+    Shop Store{Gold(20), {{Item::Sword, {Gold(80), 1}}, {Item::Potion, {Gold(10), 5}}}};
 
     std::cout << "Buy sword: " << (Trade::Buy(Customer, Store, Item::Sword) == Trade::BuyResult::Bought) << '\n';
     Print("After buy", Customer, Store);
