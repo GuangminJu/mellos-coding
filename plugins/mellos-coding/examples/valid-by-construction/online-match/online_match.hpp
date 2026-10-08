@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <optional>
+#include <set>
 #include <string>
 #include <utility>
 
@@ -13,9 +14,22 @@ public:
     explicit HostName(std::string InValue) : Value(std::move(InValue)) {}
 
     [[nodiscard]] const std::string& Get() const { return Value; }
+    [[nodiscard]] bool operator<(const HostName& Other) const { return Value < Other.Value; }
 
 private:
     std::string Value;
+};
+
+// Stands in for the real network: which hosts answer is decided outside the program.
+class Network
+{
+public:
+    explicit Network(std::set<HostName> InReachable) : Reachable(std::move(InReachable)) {}
+
+    [[nodiscard]] bool CanReach(const HostName& Host) const { return Reachable.count(Host) > 0; }
+
+private:
+    std::set<HostName> Reachable;
 };
 
 class Position
@@ -34,14 +48,13 @@ private:
 class Connection
 {
 public:
-    [[nodiscard]] static std::optional<Connection> Open(HostName Host)
+    [[nodiscard]] static std::optional<Connection> Open(const Network& Net, HostName Host)
     {
-        if (Host.Get() == "unreachable")
+        if (!Net.CanReach(Host))
             return std::nullopt;
         return Connection(std::move(Host));
     }
 
-    // Wire encoding belongs to the connection; callers pass domain values.
     void SendMove(Position To) const { std::cout << Host.Get() << " <- move " << To.ToString() << '\n'; }
 
 private:

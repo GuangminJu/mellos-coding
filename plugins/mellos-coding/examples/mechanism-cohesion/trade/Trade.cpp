@@ -4,12 +4,9 @@ namespace mellos::example
 {
 namespace
 {
-// The only definition of buyback vs. list price; both pricing rules live on this page.
 constexpr unsigned BuybackDivisor = 2;
 }
 
-// Buy and Sell sit together with the same shape: verify both sides -> price -> commit.
-// Their commit lines mirror each other: gold, stock and bag flow in opposite directions.
 Trade::BuyResult Trade::Buy(Player& Customer, Shop& Store, Item Wanted)
 {
     const auto Found = Store.Listings.find(Wanted);
@@ -26,7 +23,6 @@ Trade::BuyResult Trade::Buy(Player& Customer, Shop& Store, Item Wanted)
     if (!CustomerLeft)
         return BuyResult::CustomerCannotAfford;
 
-    // Both sides are verified, so the commit cannot fail and no half-done trade exists.
     Customer.Purse = *CustomerLeft;
     Store.Till = Store.Till + Price;
     Offer.Stock = *StockLeft;
@@ -50,7 +46,6 @@ Trade::SellResult Trade::Sell(Player& Customer, Shop& Store, Item Offered)
     if (!StoreLeft)
         return SellResult::StoreCannotAfford;
 
-    // Line-by-line inverse of Buy's commit.
     Store.Till = *StoreLeft;
     Customer.Purse = Customer.Purse + Price;
     Offer.Stock = Offer.Stock.AddOne();

@@ -8,7 +8,6 @@
 
 namespace mellos::example
 {
-// A stock count that cannot drop below zero: taking one yields what remains or nothing.
 class Quantity
 {
 public:
@@ -27,14 +26,12 @@ private:
     unsigned Count;
 };
 
-// Each listing carries its own price, so no stocked item can lack one.
 struct Listing
 {
     Gold Price;
     Quantity Stock;
 };
 
-// Data only: every representable state is valid. Knows nothing about Trade, which is layered on top of it.
 struct Shop
 {
     Gold Till;

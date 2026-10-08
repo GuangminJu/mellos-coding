@@ -7,7 +7,6 @@
 
 namespace mellos::example
 {
-// Data only: every representable state is valid. Knows nothing about Trade, which is layered on top of it.
 struct Player
 {
     Gold Purse;

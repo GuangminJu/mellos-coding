@@ -7,7 +7,8 @@ using namespace mellos::example;
 
 int main()
 {
-    const std::optional<Connection> Link = Connection::Open(HostName("game.example"));
+    const Network Internet{{HostName("game.example")}};
+    const std::optional<Connection> Link = Connection::Open(Internet, HostName("game.example"));
     if (!Link)
         return 1;
 
