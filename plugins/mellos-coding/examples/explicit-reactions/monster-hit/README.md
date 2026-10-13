@@ -25,6 +25,7 @@ A hit on a monster must advance a quest and update the HUD. *Observer* keeps the
 | **End of life by judgement**: `BattleEnd` and `QuestEnd` read data and decide; the app ends the scope, so the next monster is a new object and nothing is struck after death (see `valid-by-construction/online-match`). | [BattleEnd](Game/Combat.h#L24-L36), [QuestEnd](Game/QuestEnd.h#L9-L21), [scopes](main.cpp#L16-L24) |
 | **Dependency injection over hardcoding**: the HUD writes to an injected stream, not a global; literals appear only in the demo data. | [Hud](Ui/Hud.h#L14), [#L21](Ui/Hud.h#L21), [main.cpp#L13-L14](main.cpp#L13-L14) |
 | **No Primitive Obsession**: health, damage and kill counts are `HitPoints` and `Kills`. | [HitPoints](Data/Monster.h#L5-L20), [Kills](Data/Quest.h#L5-L16) |
+| **Minimal scope**: `Foe` is declared where its battle starts and dies when it ends, `Hunt` lives exactly as long as the quest, and nothing is declared before it is needed. | [main.cpp#L14](main.cpp#L14), [#L18](main.cpp#L18), [scopes](main.cpp#L16-L24) |
 | **Self-documenting code**: names, types and outcomes carry the whole contract, so nothing here needs a comment. | [Combat.h](Game/Combat.h#L10-L22) |
 
 Callbacks imposed by a framework (input, collision) stay at the boundary: the adapter calls into the game logic and fans out the returned outcome.

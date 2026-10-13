@@ -26,6 +26,8 @@ A trade mutates both `Player` and `Shop` and belongs to neither. Splitting it ac
 | **Stable Dependencies**: the volatile mechanism depends on stable data, never the reverse, so data is reusable and the mechanism replaceable. | [Trade.h#L3-L5](Trade.h#L3-L5) |
 | **No speculative abstraction**: no interfaces, callbacks or events; cohesion comes from placement alone. | [Trade.h#L9-L31](Trade.h#L9-L31) |
 | **Self-documenting code**: names, types and result enums carry the whole contract, so nothing here needs a comment. | [Trade.h#L9-L31](Trade.h#L9-L31) |
+| **Clear naming**: variables say what they are for (`Customer`, `Store`, `Wanted`), functions what they do (`Buy`, `Spend`, `TakeOne`), classes what they are responsible for (`Trade`, `Listing`). | [Trade.h#L29-L30](Trade.h#L29-L30), [Spend](Gold.h#L12), [Listing](Shop.h#L29-L33) |
+| **Minimal mutable state**: `Gold` and `Quantity` never mutate, every intermediate is `const`, and state changes only on the commit lines after every check has passed, so no change is implicit. | [Gold](Gold.h#L12-L20), [Trade.cpp#L17-L22](Trade.cpp#L17-L22), [commits](Trade.cpp#L26-L29) |
 
 Interactions with other mechanisms belong on the same page as well.
 
